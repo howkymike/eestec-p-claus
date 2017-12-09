@@ -1,4 +1,4 @@
-from random import randint
+from random import *
 import argparse as ap
 import csv
 import smtplib
@@ -30,12 +30,12 @@ def deliver_gift(row):
                         "<img src=\"cid:{yolo}\" \>"
                         "</body></html>".format(yolo=yolo[1:-1]), subtype='html')
 
-    if row[3] and row[3][-1] == "a":
-        mikolaj = ("mikolaj.jpg")
+    if row[1] and row[1][-1].lower() == "a":
+        mikolaj = choice(["mikolaj1.jpg", "mikolaj2.jpg", "mikolaj3.jpg"])
     elif row[1].lower() == "kuba":
-        mikolaj = ("pani_mikolaj.jpg")
+        mikolaj = choice(["pani_mikolaj1.jpg", "pani_mikolaj2.jpg", "pani_mikolaj3.jpg"])
     else:
-        mikolaj = ("pani_mikolaj.jpg")
+        mikolaj = choice(["pani_mikolaj1.jpg", "pani_mikolaj2.jpg", "pani_mikolaj3.jpg"])
 
     with open(mikolaj, 'rb') as img:
         msg.get_payload()[0].add_related(img.read(), 'image', 'jpg', cid=yolo)
@@ -133,7 +133,6 @@ if __name__ == '__main__':
                                formatter_class=ap.RawTextHelpFormatter)
 
     parser.add_argument("filename", help="Filename")
-    # parser.add_argument("-o", "--output", default='miki.csv', type=str, help="Nazwa pliku wynikowego")
     parser.add_argument("-d", "--delimeter", default=',', type=str, help="Separator")
     parser.add_argument("-q", "--quotechar", default='"', type=str, help="Symbol cudzysłowia")
     parser.add_argument('-n', '--noheader', help='Plik csv nie zawiera nagłówka', action='store_true')
