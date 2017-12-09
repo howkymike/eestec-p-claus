@@ -29,13 +29,11 @@ def deliver_gift(row):
                         "<br/><br/>" + \
                         "<img src=\"cid:{yolo}\" \>"
                         "</body></html>".format(yolo=yolo[1:-1]), subtype='html')
-
-    if row[1] and row[1][-1].lower() == "a":
-        mikolaj = choice(["mikolaj1.jpg", "mikolaj2.jpg", "mikolaj3.jpg"])
-    elif row[1].lower() == "kuba":
+    
+    if row[0] and (row[0].lower() == "kuba" or not row[0][-1].lower() == 'a'):
         mikolaj = choice(["pani_mikolaj1.jpg", "pani_mikolaj2.jpg", "pani_mikolaj3.jpg"])
     else:
-        mikolaj = choice(["pani_mikolaj1.jpg", "pani_mikolaj2.jpg", "pani_mikolaj3.jpg"])
+        mikolaj = choice(["mikolaj1.jpg", "mikolaj2.jpg", "mikolaj3.jpg"])
 
     with open(mikolaj, 'rb') as img:
         msg.get_payload()[0].add_related(img.read(), 'image', 'jpg', cid=yolo)
@@ -118,7 +116,7 @@ def write_csv(output, fn, delim=',', quotechar='"'):
 
 
 if __name__ == '__main__':
-    parser = ap.ArgumentParser(description='Program "miki" przyjmuje plik csv z imionami i nazwiskami osób,'
+    parser = ap.ArgumentParser(description='Program "santa" przyjmuje plik csv z imionami i nazwiskami osób,'
                                            ' i na jego podstawie generuje drugi plik csv'
                                            ' wraz z przyporządkowanymi mikołajami.\n'
                                            'Pamiętaj proszę o poprawnym formatowaniu pliku csv. '
