@@ -13,10 +13,6 @@ def list_without(li, i):
     return li_copy
 
 
-# def gender():
-
-
-
 def deliver_gift(row):
     # Create the container (outer) email message
     msg = EmailMessage()
