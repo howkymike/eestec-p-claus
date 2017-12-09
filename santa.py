@@ -13,8 +13,8 @@ def list_without(li, i):
     return li_copy
 
 
-def gender():
-    
+# def gender():
+
 
 
 def deliver_gift(row):
@@ -33,9 +33,15 @@ def deliver_gift(row):
                         "<br/><br/>" + \
                         "<img src=\"cid:{yolo}\" \>"
                         "</body></html>".format(yolo=yolo[1:-1]), subtype='html')
-    if row[3][-1] == "a":
-        print("cebula")
-    with open("mikolaj.jpg", 'rb') as img:
+
+    if row[3] and row[3][-1] == "a":
+        mikolaj = ("mikolaj.jpg")
+    elif row[1].lower() == "kuba":
+        mikolaj = ("pani_mikolaj.jpg")
+    else:
+        mikolaj = ("pani_mikolaj.jpg")
+
+    with open(mikolaj, 'rb') as img:
         msg.get_payload()[0].add_related(img.read(), 'image', 'jpg', cid=yolo)
 
     # Send the email via our own SMTP server
