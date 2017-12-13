@@ -1,5 +1,6 @@
 - przyporządkowanie wszystkim osobom innej osoby    OK
 - wysyłanie maila   OK
+- walidator     NOT OK...
 
 Aby uruchomić skrypt trzeba pobrać całe repo (oczywiste), w konsoli wpisujemy: 
 python3 santa.py nazwa_pliku.csv

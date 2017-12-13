@@ -1,9 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from random import *
 import argparse as ap
 import csv
 import smtplib
 from email.message import EmailMessage
 from email.utils import make_msgid
+
 
 def list_without(li, i):
     li_copy = list(li)
@@ -23,13 +27,13 @@ def deliver_gift(row):
     yolo = make_msgid()
     msg.add_alternative("<html><head></head><body>"
                         "Cześć!<br/><br/>" + \
-                        "W tym roku będziesz mikołajem dla: <b>" + row[3] + " " + row[4] + "</b>." + \
-                        "<br/><br/>" + \
-                        "Możesz inspirować się Jej/Jego wishlistą: <br/>" + row[6] + \
-                        "<br/><br/>" + \
+                        "W tym roku będziesz mikołajem dla: <b>" + row[3] + " " + row[4] + "</b>." +
+                        "<br/><br/>" +
+                        "Możesz inspirować się Jej/Jego wishlistą: <br/>" + row[6] +
+                        "<br/><br/>" +
                         "<img src=\"cid:{yolo}\" \>"
                         "</body></html>".format(yolo=yolo[1:-1]), subtype='html')
-    
+
     if row[0] and (row[0].lower() == "kuba" or not row[0][-1].lower() == 'a'):
         mikolaj = choice(["pani_mikolaj1.jpg", "pani_mikolaj2.jpg", "pani_mikolaj3.jpg"])
     else:
@@ -106,7 +110,6 @@ def read_csv(fn, delim=',', quotechar='"', header=True):
 
 
 def write_csv(output, fn, delim=',', quotechar='"'):
-
     with open(fn, 'w', newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=delim,
                                 quotechar=quotechar, quoting=csv.QUOTE_MINIMAL)
