@@ -110,7 +110,7 @@ def read_csv(fn, delim=',', quotechar='"', header=True):
 
 
 def write_csv(output, fn, delim=',', quotechar='"'):
-    with open(fn, 'w', newline='') as csvfile:
+    with open(fn, 'w', newline='', encoding="utf-8") as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=delim,
                                 quotechar=quotechar, quoting=csv.QUOTE_MINIMAL)
 
